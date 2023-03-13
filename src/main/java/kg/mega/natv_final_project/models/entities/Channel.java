@@ -16,10 +16,11 @@ import java.util.Date;
 public class Channel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("channel_id")
     Long channelId;
     @Column(length = 30)
     String channelName;
-    Date createdDate;
+    Date createdDate = new Date();
     @JsonProperty("channel_status")
     boolean channelStatus;
     String logoPath;

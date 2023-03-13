@@ -1,6 +1,7 @@
 package kg.mega.natv_final_project.models.entities;
 
 import jakarta.persistence.*;
+import kg.mega.natv_final_project.models.enums.Status;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public class Order {
     String clientEmail;
     String clientFio;
     String clientPhone;
-    String orderStatus;
+    Status orderStatus;
     @ManyToOne
     Channel channel;
     @ManyToOne

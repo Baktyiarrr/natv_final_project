@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/API/V1/CHANNEL/LIST")
+@RequestMapping("/api/v1/channel")
 public class ChannelController {
     private final ChannelService channelService;
 
     public ChannelController(ChannelService channelService) {
         this.channelService = channelService;
     }
-    @GetMapping("/findAll")
+    @GetMapping("/list")
     public List<ChannelDto> findAll(){
         return channelService.findAll();
     }

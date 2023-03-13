@@ -1,0 +1,30 @@
+package kg.mega.natv_final_project.controllers.crud;
+
+import kg.mega.natv_final_project.models.dto.DiscountDto;
+import kg.mega.natv_final_project.services.DiscountService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/crud")
+public class DiscountController {
+    private final DiscountService discountService;
+
+    public DiscountController(DiscountService discountService) {
+        this.discountService = discountService;
+    }
+    @PostMapping("/save")
+    public DiscountDto save(@RequestBody DiscountDto discountDto){
+        return discountService.save(discountDto);
+    }
+    @GetMapping("/findAll")
+    public List<DiscountDto> findAll(){
+        return discountService.findAll();
+    }
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody List<DiscountDto> discountDtoList){
+        return discountService.update(discountDtoList);
+    }
+}
