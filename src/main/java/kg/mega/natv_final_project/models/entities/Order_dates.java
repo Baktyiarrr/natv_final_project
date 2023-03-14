@@ -16,7 +16,7 @@ public class Order_dates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Date date;
+    Date days;
     @ManyToOne
     Order order;
 }

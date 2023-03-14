@@ -1,6 +1,6 @@
 package kg.mega.natv_final_project.services;
 
-import kg.mega.natv_final_project.models.dto.DiscountDto;
+import kg.mega.natv_final_project.models.dto.crud.DiscountDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

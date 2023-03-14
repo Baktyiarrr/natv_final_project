@@ -1,8 +1,8 @@
 package kg.mega.natv_final_project.models.entities;
 
 import jakarta.persistence.*;
+import kg.mega.natv_final_project.utils.DateUtil;
 import lombok.AccessLevel;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -17,10 +17,15 @@ public class Price {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    double pricePerLetter;
+    double pricePerSymbol;
     double bannerPrice;
     Date startDate;
     Date endDate;
     @ManyToOne
     Channel channel;
+    @PrePersist
+    void startEndDate() {
+        startDate = new Date();
+        endDate = new DateUtil().getInstance().getEndDate();
+    }
 }

@@ -1,6 +1,6 @@
-package kg.mega.natv_final_project.mappers.crud;
+package kg.mega.natv_final_project.mappers;
 
-import kg.mega.natv_final_project.models.dto.DiscountDto;
+import kg.mega.natv_final_project.models.dto.crud.DiscountDto;
 import kg.mega.natv_final_project.models.entities.Discount;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

@@ -1,7 +1,7 @@
 package kg.mega.natv_final_project.services.impl;
 
 import kg.mega.natv_final_project.mappers.OrderMapper;
-import kg.mega.natv_final_project.models.dto.requests.OrderDto;
+import kg.mega.natv_final_project.models.dto.crud.OrderDto;
 import kg.mega.natv_final_project.models.entities.Order;
 import kg.mega.natv_final_project.repositories.OrderRepo;
 import kg.mega.natv_final_project.services.OrderService;
@@ -22,7 +22,12 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto save(OrderDto orderDto) {
         Order order = OrderMapper.INSTANCE.orderDtoToOrder(orderDto);
         order = orderRepo.save(order);
-
         return orderDto;
+    }
+
+    @Override
+    public Order findById(Long id) {
+
+        return null;
     }
 }

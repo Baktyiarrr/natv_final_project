@@ -1,12 +1,11 @@
 package kg.mega.natv_final_project.models.entities;
 
 import jakarta.persistence.*;
-import kg.mega.natv_final_project.models.enums.Status;
+import kg.mega.natv_final_project.enums.Status;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.boot.archive.scan.internal.ScanResultImpl;
 
 import javax.management.relation.Role;
 

@@ -1,7 +1,7 @@
 package kg.mega.natv_final_project.models.entities;
 
 import jakarta.persistence.*;
-import kg.mega.natv_final_project.models.enums.Status;
+import kg.mega.natv_final_project.enums.Status;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

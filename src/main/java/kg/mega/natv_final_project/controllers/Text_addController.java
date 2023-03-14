@@ -1,4 +1,4 @@
-package kg.mega.natv_final_project.controllers.v1;
+package kg.mega.natv_final_project.controllers;
 
 import kg.mega.natv_final_project.models.dto.Text_addDto;
 import kg.mega.natv_final_project.models.entities.Text_add;

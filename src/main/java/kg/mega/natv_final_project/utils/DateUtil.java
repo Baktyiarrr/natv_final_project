@@ -12,8 +12,6 @@ public class DateUtil {
 
         return INSTANCE;
     }
-
-
     public Date getEndDate(){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 31);

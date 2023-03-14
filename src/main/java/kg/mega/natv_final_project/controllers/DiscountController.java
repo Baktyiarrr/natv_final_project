@@ -1,6 +1,6 @@
-package kg.mega.natv_final_project.controllers.crud;
+package kg.mega.natv_final_project.controllers;
 
-import kg.mega.natv_final_project.models.dto.DiscountDto;
+import kg.mega.natv_final_project.models.dto.crud.DiscountDto;
 import kg.mega.natv_final_project.services.DiscountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

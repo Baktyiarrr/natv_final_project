@@ -1,7 +1,7 @@
 package kg.mega.natv_final_project.services.impl;
 
-import kg.mega.natv_final_project.mappers.crud.DiscountMapper;
-import kg.mega.natv_final_project.models.dto.DiscountDto;
+import kg.mega.natv_final_project.mappers.DiscountMapper;
+import kg.mega.natv_final_project.models.dto.crud.DiscountDto;
 import kg.mega.natv_final_project.models.entities.Discount;
 import kg.mega.natv_final_project.repositories.ChannelRepo;
 import kg.mega.natv_final_project.repositories.DiscountRepo;
