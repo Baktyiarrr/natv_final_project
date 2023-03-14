@@ -2,8 +2,10 @@ package kg.mega.natv_final_project.services.impl;
 
 import kg.mega.natv_final_project.mappers.ChannelMapper;
 import kg.mega.natv_final_project.models.dto.crud.ChannelDto;
+import kg.mega.natv_final_project.models.dto.requests.request2.ChannelCalculateReqDto;
 import kg.mega.natv_final_project.models.dto.responses.response1.ChannelListDto;
 import kg.mega.natv_final_project.models.dto.responses.response1.DiscountListDto;
+import kg.mega.natv_final_project.models.dto.responses.response2.ChannelCalculateResDto;
 import kg.mega.natv_final_project.models.entities.Channel;
 import kg.mega.natv_final_project.models.entities.Discount;
 import kg.mega.natv_final_project.repositories.ChannelRepo;
@@ -23,7 +25,6 @@ public class ChannelServiceImpl implements ChannelService {
     private final DiscountRepo discountRepo;
 
 
-
     public ChannelServiceImpl(ChannelRepo channelRepo, PriceRepo priceRepo, DiscountRepo discountRepo) {
         this.channelRepo = channelRepo;
 
@@ -35,26 +36,27 @@ public class ChannelServiceImpl implements ChannelService {
     public List<ChannelListDto> findAll() {
         List<ChannelListDto> channelListDtos = new ArrayList<>();
         List<Channel> channels = channelRepo.findAllByChannelStatus();
-        for (Channel i:channels) {
+        for (Channel i : channels) {
             ChannelListDto channelListDto = new ChannelListDto();
             channelListDto.setChannelName(i.getChannelName());
             channelListDto.setLogoPath(i.getLogoPath());
-            if(priceRepo.getPriceById(i.getChannelId()) != null){
-                if (getDiscountsById(i.getChannelId()) != null){
+            if (priceRepo.getPriceById(i.getChannelId()) != null) {
+                if (getDiscountsById(i.getChannelId()) != null) {
                     channelListDto.setPricePerSymbol(priceRepo.getPriceById(i.getChannelId()).getPricePerSymbol());
                     channelListDto.setDiscounts(getDiscountsById(i.getChannelId()));
                 }
             }
             channelListDtos.add(channelListDto);
         }
-       return channelListDtos;
+        return channelListDtos;
     }
-    public List<DiscountListDto> getDiscountsById(Long id){
+
+    public List<DiscountListDto> getDiscountsById(Long id) {
         List<Discount> discounts = discountRepo.getDiscountsById(id);
         List<DiscountListDto> discountListDtos = new ArrayList<>();
-        for (Discount i: discounts) {
+        for (Discount i : discounts) {
             if (i.getStartDate().before(new Date()) &&
-            i.getEndDate().after(new Date())){
+                    i.getEndDate().after(new Date())) {
                 DiscountListDto discountListDto = new DiscountListDto();
                 discountListDto.setDiscount(i.getDiscount());
                 discountListDto.setFromDayCount(i.getFromDayCount());
@@ -69,20 +71,20 @@ public class ChannelServiceImpl implements ChannelService {
     public ChannelDto save(ChannelDto channelDto) {
         Channel channel = ChannelMapper.INSTANCE.channelDtoToChannel(channelDto);
         channel = channelRepo.save(channel);
-        /*channelDto.setChannelId(channel.getChannelId());*/
+        channelDto.setChannelId(channel.getChannelId());
         return channelDto;
     }
 
     @Override
     public Channel findById(Long channelId) {
-        return channelRepo.findById(channelId).orElseThrow(()->{
-             return new RuntimeException("Такого канала не существует!");
+        return channelRepo.findById(channelId).orElseThrow(() -> {
+            return new RuntimeException("Такого канала не существует!");
         });
     }
 
     @Override
     public ChannelDto update(ChannelDto channelDto) {
-        Channel existingChannel = channelRepo.findById(channelDto.getChannelId()).orElseThrow(()->{
+        Channel existingChannel = channelRepo.findById(channelDto.getChannelId()).orElseThrow(() -> {
             return new RuntimeException("Такого канала не существует!");
         });
         existingChannel = ChannelMapper.INSTANCE.channelDtoToChannel(channelDto);
@@ -90,4 +92,34 @@ public class ChannelServiceImpl implements ChannelService {
         channelRepo.save(existingChannel);
         return channelDto;
     }
+
+    @Override
+    public ChannelCalculateResDto calculate(ChannelCalculateReqDto channelCalculateReqDto) {
+        ChannelCalculateResDto channelCalculateResDto = new ChannelCalculateResDto();
+        channelCalculateResDto.setText(channelCalculateReqDto.getText());
+        channelCalculateResDto.setDaysCount(channelCalculateReqDto.getDaysCount());
+        channelCalculateResDto.setChannelId(channelCalculateReqDto.getChannelId());
+        boolean active = channelRepo.findByStatus(channelCalculateReqDto.getChannelId());
+        try {
+            if (active == false) ;
+        } catch (Exception e) {
+            System.err.println("This channel is not active!");
+            throw new RuntimeException();
+        }
+        channelCalculateResDto.setPrice(channelCalculateReqDto.getText().replaceAll(" ", "").length()
+                * priceRepo.getPricePerSymbol(channelCalculateResDto.getChannelId())
+                * channelCalculateResDto.getDaysCount());
+        if (channelCalculateResDto.getDaysCount() >= 3 && channelCalculateResDto.getDaysCount() < 7) {
+            channelCalculateResDto.setPriceWithDiscount(channelCalculateResDto.getPrice() - channelCalculateResDto.getPrice() * 0.05);
+        }
+        if (channelCalculateResDto.getDaysCount() >= 7 && channelCalculateResDto.getDaysCount() < 10) {
+            channelCalculateResDto.setPriceWithDiscount(channelCalculateResDto.getPrice() - channelCalculateResDto.getPrice() * 0.1);
+        }
+        if (channelCalculateResDto.getDaysCount() >= 10) {
+            channelCalculateResDto.setPriceWithDiscount(channelCalculateResDto.getPrice() - channelCalculateResDto.getPrice() * 0.15);
+        }
+
+        return channelCalculateResDto;
+    }
+
 }

@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface PriceRepo extends JpaRepository<Price,Long> {
     @Query(value = "select * from tb_price where channel_channel_id = :id",nativeQuery = true)
     Price getPriceById(Long id);
-    @Query(value = "select price_per_letter from tb_price where channel_channel_id = :id",nativeQuery = true)
+    @Query(value = "select price_per_symbol from tb_price where channel_channel_id = :id",nativeQuery = true)
     double getPricePerSymbol(Long id);
 }

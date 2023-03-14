@@ -1,7 +1,6 @@
 package kg.mega.natv_final_project.controllers;
 
-import kg.mega.natv_final_project.models.dto.Text_addDto;
-import kg.mega.natv_final_project.models.entities.Text_add;
+import kg.mega.natv_final_project.models.dto.crud.TextAddDto;
 import kg.mega.natv_final_project.services.Text_addService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,7 @@ public class Text_addController {
         this.textAddService = textAddService;
     }
     @PostMapping("/save")
-    public Text_addDto save(Text_addDto textAddDto){
+    public TextAddDto save(TextAddDto textAddDto){
         return textAddService.save(textAddDto);
     }
 }

@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface DiscountRepo extends JpaRepository<Discount, Long> {
     @Query(value = "select * from  tb_discount where channel_channel_id = :id",nativeQuery = true)
-    public List<Discount> getDiscountsById(Long id);
+    List<Discount> getDiscountsById(Long id);
 }

@@ -1,9 +1,12 @@
 package kg.mega.natv_final_project.controllers;
 
 import kg.mega.natv_final_project.models.dto.crud.ChannelDto;
+import kg.mega.natv_final_project.models.dto.requests.request2.ChannelCalculateReqDto;
 import kg.mega.natv_final_project.models.dto.responses.response1.ChannelListDto;
+import kg.mega.natv_final_project.models.dto.responses.response2.ChannelCalculateResDto;
 import kg.mega.natv_final_project.models.entities.Channel;
 import kg.mega.natv_final_project.services.ChannelService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +34,9 @@ public class ChannelController {
     @PutMapping("/update")
     public ChannelDto update(@RequestBody ChannelDto channelDto){
         return channelService.update(channelDto);
+    }
+    @GetMapping("/calculate")
+    public ChannelCalculateResDto calculate(@RequestBody ChannelCalculateReqDto channelCalculateReqDto){
+        return channelService.calculate(channelCalculateReqDto);
     }
 }

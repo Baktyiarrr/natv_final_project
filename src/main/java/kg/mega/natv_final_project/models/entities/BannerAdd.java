@@ -6,17 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_order_dates")
-public class Order_dates {
+@Table(name = "tb_banner_add")
+public class BannerAdd {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Date days;
-    @ManyToOne
-    Order order;
+    String filePath;
+
 }

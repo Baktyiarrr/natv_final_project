@@ -6,15 +6,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_text_add")
-public class Text_add {
+@Table(name = "tb_order_dates")
+public class OrderDates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String text;
-    int symbolCount;
+    Date days;
+    @ManyToOne
+    Order order;
 }

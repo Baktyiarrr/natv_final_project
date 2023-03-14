@@ -19,15 +19,15 @@ public class Order {
     Long id;
     Date createdDate;
     String clientEmail;
-    String clientFio;
+    String clientFIO;
     String clientPhone;
     Status orderStatus;
     @ManyToOne
     Channel channel;
     @ManyToOne
-    Text_add textAdd;
+    Text textAdd;
     @ManyToOne
-    Banner_add bannerAdd;
+    BannerAdd bannerAdd;
     double orderSum;
 
 }

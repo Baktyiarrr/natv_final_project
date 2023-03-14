@@ -1,10 +1,12 @@
 package kg.mega.natv_final_project.models.dto.requests.request3;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -12,5 +14,6 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChannelsListReqDto {
     Long channelId;
-    List<?>days;
+    @JsonFormat(pattern = "dd.mm.yyyy")
+    List<Date>days;
 }

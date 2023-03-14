@@ -14,4 +14,9 @@ public interface ChannelRepo extends JpaRepository<Channel, Long> {
             "Where channel_status = true \n"+
             "ORDER BY channel_name asc",nativeQuery = true)
     List<Channel> findAllByChannelStatus();
+    @Query (value = "select channel_status  from tb_channel " +
+            "where  channel_id = :channelId", nativeQuery = true)
+    boolean findByStatus(Long channelId);
+
 }
+
