@@ -21,4 +21,11 @@ public class PriceServiceImpl implements PriceService {
         priceRepo.save(price);
         return priceDto;
     }
+
+    @Override
+    public Price findById(Long id) {
+        return priceRepo.findById(id).orElseThrow(()->{
+            return new RuntimeException("Такая цена не существует!");
+        });
+    }
 }

@@ -11,8 +11,8 @@ import java.util.List;
 
 @Component
 @Mapper
-public interface Text_addMapper {
-    Text_addMapper INSTANCE = Mappers.getMapper(Text_addMapper.class);
+public interface TextAddMapper {
+    TextAddMapper INSTANCE = Mappers.getMapper(TextAddMapper.class);
     Text text_addDtoToText_add(TextAddDto textAddDto);
     TextAddDto text_addToText_addDto(Text textAdd);
     List<Text> text_addDtosToText_add(List<TextAddDto> textAddDtos);

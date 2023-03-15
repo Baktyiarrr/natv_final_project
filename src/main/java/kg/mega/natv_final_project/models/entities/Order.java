@@ -1,5 +1,6 @@
 package kg.mega.natv_final_project.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import kg.mega.natv_final_project.enums.Status;
 import lombok.AccessLevel;
@@ -17,7 +18,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    Date createdDate;
+    Date createdDate = new Date();
     String clientEmail;
     String clientFIO;
     String clientPhone;

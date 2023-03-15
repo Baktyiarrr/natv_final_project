@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/crud")
+@RequestMapping("/api/v1/discount")
 public class DiscountController {
     private final DiscountService discountService;
 
